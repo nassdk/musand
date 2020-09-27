@@ -1,33 +1,39 @@
 package com.nassdk.musand
 
 import android.content.Context
+import android.content.pm.ActivityInfo
 import android.graphics.Rect
+import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
-import com.nassdk.musand.global.BaseActivity
-import com.nassdk.musand.global.BaseFragment
+import androidx.appcompat.app.AppCompatActivity
+import com.nassdk.musand.presentation.global.BaseFragment
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.NavigatorHolder
-import ru.terrakok.cicerone.Router
 import ru.terrakok.cicerone.android.support.SupportAppNavigator
 
-class AppActivity : BaseActivity() {
+class AppActivity : AppCompatActivity() {
 
-    override val resourceLayout = R.layout.activity_main
+    private val viewModel: AppViewModel by viewModel()
 
-    private val router: Router by inject()
     private val navigatorHolder: NavigatorHolder by inject()
-
-    private val navigator: Navigator by lazy {
-        SupportAppNavigator(this, supportFragmentManager, R.id.container)
-    }
+    private val navigator: Navigator by lazy { SupportAppNavigator(this, R.id.container) }
 
     private val currentFragment
         get() = supportFragmentManager.findFragmentById(R.id.container) as BaseFragment?
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.app_screen)
+
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+
+        run { viewModel }
+    }
 
     override fun onResumeFragments() {
         super.onResumeFragments()
@@ -39,12 +45,9 @@ class AppActivity : BaseActivity() {
         navigatorHolder.removeNavigator()
     }
 
-    override fun handleLaunch() {
-        router.newRootChain()
-    }
 
     override fun onBackPressed() {
-        currentFragment?.onBackPressed() ?: router.exit()
+        currentFragment?.onBackPressed() ?: viewModel.onBackPressed()
     }
 
     override fun dispatchTouchEvent(event: MotionEvent): Boolean {

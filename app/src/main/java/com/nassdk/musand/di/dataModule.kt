@@ -1,6 +1,7 @@
-package com.nassdk.musand
+package com.nassdk.musand.di
 
 import com.google.gson.Gson
+import com.nassdk.musand.data.ApiService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
@@ -30,7 +31,7 @@ val dataModule = module {
         //  return chain.proceed(request);
         //});
 
-        val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
+//        val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
 
         Retrofit
             .Builder()

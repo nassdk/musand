@@ -1,4 +1,4 @@
-package com.nassdk.musand
+package com.nassdk.musand.di
 
 import org.koin.dsl.module
 import ru.terrakok.cicerone.Cicerone

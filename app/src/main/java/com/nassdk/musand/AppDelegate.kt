@@ -1,6 +1,10 @@
 package com.nassdk.musand
 
 import android.app.Application
+import com.nassdk.musand.di.dataModule
+import com.nassdk.musand.di.domainModule
+import com.nassdk.musand.di.navigationModule
+import com.nassdk.musand.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import timber.log.Timber
@@ -22,7 +26,8 @@ class AppDelegate : Application() {
             modules(
                 dataModule,
                 navigationModule,
-                domainModule
+                domainModule,
+                viewModelModule
             )
         }
     }

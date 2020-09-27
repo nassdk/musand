@@ -1,4 +1,4 @@
-package com.nassdk.domain.repository
+package com.nassdk.musand.domain.repository
 
 interface AuthRepository {
     suspend fun makeAuth()
