@@ -12,7 +12,7 @@ class SplashFragment : BaseFragment() {
 
     override fun onBackPressed() = viewModel.onBackPressed()
 
-    override fun init() {
+    override fun prepareUi() {
         run { viewModel }
     }
 
@@ -20,3 +20,4 @@ class SplashFragment : BaseFragment() {
         fun newInstance() = SplashFragment()
     }
 }
+
