@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
-abstract class BaseFragment: Fragment() {
+abstract class BaseFragment : Fragment() {
 
     abstract val resourceLayout: Int
 
@@ -20,9 +20,11 @@ abstract class BaseFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         prepareUi()
+        setupViewModel()
     }
 
     open fun prepareUi() {}
+    open fun setupViewModel() {}
 
 //    protected fun setupToolbar(
 //        title: String,

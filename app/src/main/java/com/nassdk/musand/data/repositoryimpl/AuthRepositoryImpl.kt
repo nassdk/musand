@@ -7,7 +7,5 @@ class AuthRepositoryImpl(
     private val api: ApiService
 ) : AuthRepository {
 
-    override suspend fun makeAuth() {
-
-    }
+    override suspend fun makeAuth() = api.authorize()
 }

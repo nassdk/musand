@@ -9,5 +9,5 @@ val domainModule = module {
 
     single<AuthRepository> { AuthRepositoryImpl(get()) }
 
-    single { AuthInteractor(get()) }
+    single { AuthInteractor(get(), get()) }
 }
